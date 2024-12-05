@@ -1,4 +1,5 @@
 import { pool } from '../data/database.js';
+import { Email } from '../utils/emails.js';
 // task creater
 export const createTask = async(req, res, next)=>{
     const sql = `INSERT INTO tasks
@@ -10,8 +11,6 @@ export const createTask = async(req, res, next)=>{
     , note
     , user_assigned
     , admin
-
-    
     )
     VALUES
     (?,?,?,?,?,?,?);`
@@ -36,6 +35,8 @@ export const createTask = async(req, res, next)=>{
             message:'task added',
             id:nTask.insertId
         });
+        // this is where the email function is used.
+        // figure out how to collect the user information to the email class
     }
 }
 
